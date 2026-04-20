@@ -34,45 +34,82 @@
                 android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/sleepTimeBtn"
-                android:text="Set Sleep Time"
+                android:id="@+id/dateBtn"
+                android:text="Select Date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:backgroundTint="#444444"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp"/>
 
-            <Button
-                android:id="@+id/wakeTimeBtn"
-                android:text="Set Wake Time"
-                android:layout_marginTop="8dp"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/sleepTimeBtn"
+                    android:text="Bed Time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="#333333"
+                    android:textColor="#FFFFFF"/>
+
+                <Button
+                    android:id="@+id/wakeTimeBtn"
+                    android:text="Wake Time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:backgroundTint="#333333"
+                    android:textColor="#FFFFFF"/>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/saveSleepBtn"
-                android:text="Save Sleep"
+                android:text="Save Sleep Record"
                 android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:backgroundTint="#7B61FF"
+                android:textColor="#FFFFFF"/>
 
             <TextView
                 android:id="@+id/resultText"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textColor="#00FF00"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:layout_marginTop="16dp"
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#333333"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"/>
+
             <TextView
-                android:text="History"
+                android:text="Sleep History"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
-                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <ListView
                 android:id="@+id/sleepList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="400dp"
+                android:divider="#222222"
+                android:dividerHeight="1dp"/>
 
         </LinearLayout>
 

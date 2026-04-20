@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"> <!-- White base for lightness -->
+    android:background="#FFFFFF">
 
-    <!-- Background (Made even lighter) -->
+    <!-- Background -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,7 +13,7 @@
         android:scaleType="centerCrop"
         android:alpha="0.4" />
 
-    <!-- Bottom Navigation (Fixed at bottom) -->
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:background="#000000"
         app:menu="@menu/bottom_nav_menu" />
 
-    <!-- Add Habit Button (Pinned right above Bottom Nav) -->
+    <!-- Add Habit Button -->
     <Button
         android:id="@+id/addHabitBtn"
         android:layout_width="match_parent"
@@ -35,379 +35,34 @@
         android:backgroundTint="#7B61FF"
         android:textStyle="bold" />
 
-    <!-- Scrollable Content Area -->
-    <ScrollView
+    <!-- Scrollable Content -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_above="@id/addHabitBtn"
-        android:fillViewport="true">
+        android:orientation="vertical"
+        android:padding="14dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:text="Home"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="6dp" />
 
-            <!-- Title -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:layout_marginBottom="16dp" />
+        <!-- RecyclerView for Dynamic Habits -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/habitsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="20dp" />
 
-            <!-- ROW 1 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/walkingCard"
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:background="@drawable/bg_card_glass"
-                    android:clipToOutline="true"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/walk_card"
-                        android:scaleType="centerCrop" />
-
-                    <!-- Ultra light tint for maximum brightness -->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#0D000000" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Walking"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Track steps"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/meditationCard"
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:background="@drawable/bg_card_glass"
-                    android:clipToOutline="true"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/meditation_card"
-                        android:scaleType="centerCrop" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#0D000000" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Meditation"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Relax mind"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>
-
-            <!-- ROW 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/cookingCard"
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:background="@drawable/bg_card_glass"
-                    android:clipToOutline="true"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/cooking_card"
-                        android:scaleType="centerCrop" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#0D000000" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cooking"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Track meals"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/sleepCard"
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:background="@drawable/bg_card_glass"
-                    android:clipToOutline="true"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/sleep_card"
-                        android:scaleType="centerCrop" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#0D000000" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sleep"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Track sleep"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>
-
-            <!-- ROW 3 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/yogaCard"
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:background="@drawable/bg_card_glass"
-                    android:clipToOutline="true"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/yoga_card"
-                        android:scaleType="centerCrop" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#0D000000" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Yoga"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Track time"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/swimmingCard"
-                    android:layout_width="0dp"
-                    android:layout_height="160dp"
-                    android:layout_weight="1"
-                    android:layout_margin="6dp"
-                    android:background="@drawable/bg_card_glass"
-                    android:clipToOutline="true"
-                    android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/swim_card"
-                        android:scaleType="centerCrop" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#0D000000" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Swimming"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Track laps"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            android:shadowColor="#000000"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="3" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>
-
-            <!-- Custom Habit Container (New habits will appear here) -->
-            <LinearLayout
-                android:id="@+id/customHabitContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp" />
-
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>

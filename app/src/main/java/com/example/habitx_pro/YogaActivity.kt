@@ -1,8 +1,11 @@
 package com.example.habitx_pro
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
@@ -37,7 +40,15 @@ class YogaActivity : AppCompatActivity() {
 
         loadData()
 
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, dataList)
+        // Styled adapter to ensure text is BLACK
+        adapter = object : ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent)
+                val text = view.findViewById<TextView>(android.R.id.text1)
+                text.setTextColor(Color.BLACK)
+                return view
+            }
+        }
         listView.adapter = adapter
 
         // START / STOP

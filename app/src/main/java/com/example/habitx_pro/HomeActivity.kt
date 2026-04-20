@@ -2,10 +2,11 @@ package com.example.habitx_pro
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -16,40 +17,11 @@ class HomeActivity : AppCompatActivity() {
         try {
             setContentView(R.layout.activity_home)
 
-            // Setup Card Click Listeners
-            val walking = findViewById<View>(R.id.walkingCard)
-            walking?.setOnClickListener {
-                startActivity(Intent(this, WalkingActivity::class.java))
-            }
+            setupRecyclerView()
 
-            val meditation = findViewById<View>(R.id.meditationCard)
-            meditation?.setOnClickListener {
-                startActivity(Intent(this, MeditationActivity::class.java))
-            }
-
-            val cooking = findViewById<View>(R.id.cookingCard)
-            cooking?.setOnClickListener {
-                startActivity(Intent(this, CookingActivity::class.java))
-            }
-
-            val sleep = findViewById<View>(R.id.sleepCard)
-            sleep?.setOnClickListener {
-                startActivity(Intent(this, SleepActivity::class.java))
-            }
-
-            val yoga = findViewById<View>(R.id.yogaCard)
-            yoga?.setOnClickListener {
-                startActivity(Intent(this, YogaActivity::class.java))
-            }
-
-            val swimming = findViewById<View>(R.id.swimmingCard)
-            swimming?.setOnClickListener {
-                startActivity(Intent(this, SwimmingActivity::class.java))
-            }
-
-            // Add Habit Button - Exact message requested
+            // Add Habit Button
             findViewById<Button>(R.id.addHabitBtn).setOnClickListener {
-                Toast.makeText(this, "Under Devlopment", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT).show()
             }
 
             // Bottom Navigation Logic
@@ -73,6 +45,38 @@ class HomeActivity : AppCompatActivity() {
 
         } catch (e: Exception) {
             Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun setupRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.habitsRecyclerView)
+        
+        // Use GridLayout with 2 columns
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
+
+        // Initial Habit List (Can be moved to Firebase later)
+        val habitList = listOf(
+            Habit("1", "Walking", "Track steps", "walk_card", "WalkingActivity"),
+            Habit("2", "Meditation", "Relax mind", "meditation_card", "MeditationActivity"),
+            Habit("3", "Cooking", "Track meals", "cooking_card", "CookingActivity"),
+            Habit("4", "Sleep", "Track sleep", "sleep_card", "SleepActivity"),
+            Habit("5", "Yoga", "Track time", "yoga_card", "YogaActivity"),
+            Habit("6", "Swimming", "Track laps", "swim_card", "SwimmingActivity")
+        )
+
+        val adapter = HabitAdapter(habitList) { habit ->
+            openHabitActivity(habit.activityClassName)
+        }
+        recyclerView.adapter = adapter
+    }
+
+    private fun openHabitActivity(className: String) {
+        try {
+            val packageName = packageName
+            val intent = Intent(this, Class.forName("$packageName.$className"))
+            startActivity(intent)
+        } catch (e: ClassNotFoundException) {
+            Toast.makeText(this, "Feature coming soon!", Toast.LENGTH_SHORT).show()
         }
     }
 

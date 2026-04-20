@@ -4,10 +4,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
 class ProfileActivity : AppCompatActivity() {
@@ -22,18 +22,23 @@ class ProfileActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         sharedPref = getSharedPreferences("HabitX", MODE_PRIVATE)
 
-        val profileName = findViewById<EditText>(R.id.profileName)
-        val profileAge = findViewById<EditText>(R.id.profileAge)
+        val profileName = findViewById<TextInputEditText>(R.id.profileName)
+        val profileAge = findViewById<TextInputEditText>(R.id.profileAge)
+        val userEmail = findViewById<TextView>(R.id.userEmail)
         val saveProfileBtn = findViewById<Button>(R.id.saveProfileBtn)
         val logoutBtn = findViewById<Button>(R.id.logoutBtn)
 
+        // Display current user email
+        val currentUser = auth.currentUser
+        userEmail.text = currentUser?.email ?: "Not logged in"
+
         // Load name from shared preferences
-        val name = sharedPref.getString("name", "")
-        profileName.setText(name)
+        val savedName = sharedPref.getString("name", "")
+        profileName.setText(savedName)
 
         // Load saved age if exists
-        val age = sharedPref.getString("age", "")
-        profileAge.setText(age)
+        val savedAge = sharedPref.getString("age", "")
+        profileAge.setText(savedAge)
 
         saveProfileBtn.setOnClickListener {
             val enteredName = profileName.text.toString()
@@ -51,9 +56,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         logoutBtn.setOnClickListener {
-            // 🔥 Actual Firebase Sign Out
             auth.signOut()
-            
             Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show()
             
             val intent = Intent(this, LoginActivity::class.java)
