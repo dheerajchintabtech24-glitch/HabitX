@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A1A">
+
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/cooking"
+        android:scaleType="centerCrop"
+        android:alpha="0.8" />
+
+    <!-- Dark Overlay -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1A1A2E"
+        android:alpha="0.3" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Add Recipe"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:shadowColor="#000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"/>
+
+            <EditText
+                android:id="@+id/dishNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Dish Name"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCCCCC"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#FFFFFF"
+                android:padding="12dp"/>
+
+            <EditText
+                android:id="@+id/recipeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Recipe / Instructions"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCCCCC"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#FFFFFF"
+                android:padding="12dp"
+                android:gravity="top"
+                android:minLines="3"/>
+
+            <EditText
+                android:id="@+id/caloriesInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Calories (kcal)"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCCCCC"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#FFFFFF"
+                android:padding="12dp"
+                android:inputType="number"/>
+
+            <Button
+                android:id="@+id/saveRecipeBtn"
+                android:text="Save Recipe"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#7B61FF"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"/>
+
+            <TextView
+                android:text="Cooking History"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="1"/>
+
+            <ListView
+                android:id="@+id/cookingHistoryList"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="10dp"
+                android:divider="#FFFFFF"
+                android:dividerHeight="0.5dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

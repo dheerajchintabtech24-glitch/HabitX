@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A1A">
+
+    <!-- Background Image - Set to 0.9 for high brightness -->
+    <ImageView
+        android:id="@+id/backgroundImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/meditation"
+        android:scaleType="centerCrop"
+        android:alpha="0.9" />
+
+    <!-- Dark Overlay - Set to 0.1 for minimal tint -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1A1A2E"
+        android:alpha="0.1" />
+
+    <!-- Content -->
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <TextView
+            android:text="Meditation Timer"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"/>
+
+        <TextView
+            android:id="@+id/timerText"
+            android:text="00:00:00"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"/>
+
+        <Button
+            android:id="@+id/startBtn"
+            android:text="Start Timer"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#7B61FF"
+            android:layout_width="220dp"
+            android:layout_height="55dp"/>
+
+        <Button
+            android:id="@+id/resetBtn"
+            android:text="Reset"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#FF6B6B"
+            android:layout_width="220dp"
+            android:layout_height="55dp"/>
+
+        <Button
+            android:id="@+id/musicBtn"
+            android:text="Play Music"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#4CAF50"
+            android:layout_width="220dp"
+            android:layout_height="55dp"/>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:text="Save Session"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#7B61FF"
+            android:layout_width="220dp"
+            android:layout_height="55dp"/>
+
+        <TextView
+            android:text="History (Long press to delete)"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"/>
+
+        <ListView
+            android:id="@+id/historyList"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:divider="#FFFFFF"
+            android:dividerHeight="0.5dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
