@@ -109,7 +109,146 @@
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
-                <!-- Time Range UI (Styled exactly like Sleep) -->
+                <!-- Goal Timer UI (Improved with NumberPickers) -->
+                <LinearLayout
+                    android:id="@+id/goalTimerUi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/goalTimerDisplay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:00:00"
+                        android:textColor="#7B61FF"
+                        android:textSize="70sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="HOURS"
+                                android:textColor="#BBBBBB"
+                                android:textSize="12sp" />
+                            <NumberPicker
+                                android:id="@+id/hourPicker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textColor="#7B61FF"
+                            android:textSize="30sp"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginTop="15dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MINUTES"
+                                android:textColor="#BBBBBB"
+                                android:textSize="12sp" />
+                            <NumberPicker
+                                android:id="@+id/minutePicker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textColor="#7B61FF"
+                            android:textSize="30sp"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginTop="15dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SECONDS"
+                                android:textColor="#BBBBBB"
+                                android:textSize="12sp" />
+                            <NumberPicker
+                                android:id="@+id/secondPicker"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/setGoalBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#7B61FF"
+                        android:text="Confirm Goal"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/goalStartBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#7B61FF"
+                            android:text="Start"
+                            android:textColor="#FFFFFF" />
+
+                        <Button
+                            android:id="@+id/goalPauseBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="#333333"
+                            android:text="Pause"
+                            android:textColor="#FFFFFF" />
+
+                        <Button
+                            android:id="@+id/goalResetBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="#CC0000"
+                            android:text="Reset"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Time Range UI -->
                 <LinearLayout
                     android:id="@+id/timeRangeUi"
                     android:layout_width="match_parent"

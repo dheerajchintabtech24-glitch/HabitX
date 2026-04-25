@@ -38,6 +38,7 @@ class CreateHabitActivity : AppCompatActivity() {
             val type = when (selectedTypeId) {
                 R.id.radioTally -> "Tally"
                 R.id.radioTimer -> "Timer"
+                R.id.radioGoalTimer -> "GoalTimer"
                 R.id.radioTimeRange -> "TimeRange"
                 R.id.radioText -> "Text"
                 R.id.radioPedometer -> "Pedometer"
@@ -62,11 +63,8 @@ class CreateHabitActivity : AppCompatActivity() {
         }
 
         val id = UUID.randomUUID().toString()
-        // subtitle will store the type for dynamic loading
-        // For custom habits, we use a generic icon or "custom_habit_icon"
         val newHabit = Habit(id, name, "Track $type", "custom_habit_icon", "DynamicHabitActivity")
         
-        // Store the specific type mapping for the dynamic activity
         prefs.edit().putString("habit_type_$id", type).apply()
         
         habits.add(newHabit)

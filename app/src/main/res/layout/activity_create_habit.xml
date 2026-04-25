@@ -25,8 +25,8 @@
         android:layout_marginTop="32dp"
         android:hint="Habit Name"
         android:textColorHint="#888888"
-        app:boxStrokeColor="@color/purple_500"
-        app:hintTextColor="@color/purple_500"
+        app:boxStrokeColor="#7B61FF"
+        app:hintTextColor="#7B61FF"
         app:layout_constraintTop_toBottomOf="@id/createTitle">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="Tally Counter (e.g. Water, Laps)"
             android:textColor="@android:color/white"
-            android:buttonTint="@color/purple_500"
+            android:buttonTint="#7B61FF"
             android:checked="true" />
 
         <RadioButton
@@ -68,7 +68,15 @@
             android:layout_height="wrap_content"
             android:text="Timer (e.g. Meditation, Study)"
             android:textColor="@android:color/white"
-            android:buttonTint="@color/purple_500" />
+            android:buttonTint="#7B61FF" />
+
+        <RadioButton
+            android:id="@+id/radioGoalTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Goal Timer (Countdown + Vibrate)"
+            android:textColor="@android:color/white"
+            android:buttonTint="#7B61FF" />
 
         <RadioButton
             android:id="@+id/radioTimeRange"
@@ -76,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="Time Range (e.g. Sleep, Work)"
             android:textColor="@android:color/white"
-            android:buttonTint="@color/purple_500" />
+            android:buttonTint="#7B61FF" />
 
         <RadioButton
             android:id="@+id/radioText"
@@ -84,7 +92,7 @@
             android:layout_height="wrap_content"
             android:text="Text Log (e.g. Food, Journal)"
             android:textColor="@android:color/white"
-            android:buttonTint="@color/purple_500" />
+            android:buttonTint="#7B61FF" />
 
         <RadioButton
             android:id="@+id/radioPedometer"
@@ -92,7 +100,7 @@
             android:layout_height="wrap_content"
             android:text="Pedometer (Step Counter)"
             android:textColor="@android:color/white"
-            android:buttonTint="@color/purple_500" />
+            android:buttonTint="#7B61FF" />
     </RadioGroup>
 
     <Button
@@ -100,7 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@color/purple_500"
+        android:backgroundTint="#7B61FF"
         android:text="Create Habit"
         android:textAllCaps="false"
         android:textSize="18sp"
