@@ -1,8 +1,10 @@
 package com.example.habitx_pro
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,10 +16,15 @@ class SwimmingActivity : AppCompatActivity() {
 
     private var dataList = mutableListOf<String>()
     private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var auth: FirebaseAuth
+
+    private val userId: String
+        get() = auth.currentUser?.uid ?: "default_user"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_swimming)
+        auth = FirebaseAuth.getInstance()
 
         input = findViewById(R.id.lapInput)
         saveBtn = findViewById(R.id.saveLap)
@@ -56,16 +63,17 @@ class SwimmingActivity : AppCompatActivity() {
     }
 
     private fun saveData() {
-        val prefs = getSharedPreferences("SwimData", MODE_PRIVATE)
+        val prefs = getSharedPreferences("SwimData_$userId", Context.MODE_PRIVATE)
         prefs.edit().putString("data", dataList.joinToString("|")).apply()
     }
 
     private fun loadData() {
-        val prefs = getSharedPreferences("SwimData", MODE_PRIVATE)
+        val prefs = getSharedPreferences("SwimData_$userId", Context.MODE_PRIVATE)
         val saved = prefs.getString("data", "")
 
         if (!saved.isNullOrEmpty()) {
-            dataList = saved.split("|").toMutableList()
+            dataList.clear()
+            dataList.addAll(saved.split("|"))
         }
     }
 }

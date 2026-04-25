@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,10 +32,15 @@ class WalkingActivity : AppCompatActivity(), SensorEventListener {
 
     private var dataList = mutableListOf<String>()
     private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var auth: FirebaseAuth
+
+    private val userId: String
+        get() = auth.currentUser?.uid ?: "default_user"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_walking)
+        auth = FirebaseAuth.getInstance()
 
         stepsText = findViewById(R.id.stepsText)
         goalText = findViewById(R.id.goalText)
@@ -162,23 +168,23 @@ class WalkingActivity : AppCompatActivity(), SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
     private fun saveBase() {
-        val prefs = getSharedPreferences("stepsPrefs", MODE_PRIVATE)
+        val prefs = getSharedPreferences("stepsPrefs_$userId", MODE_PRIVATE)
         prefs.edit().putFloat("previousSteps", previousTotalSteps).apply()
     }
 
     private fun saveGoal() {
-        val prefs = getSharedPreferences("stepsPrefs", MODE_PRIVATE)
+        val prefs = getSharedPreferences("stepsPrefs_$userId", MODE_PRIVATE)
         prefs.edit().putInt("stepGoal", stepGoal).apply()
     }
 
     private fun saveDataList() {
-        val prefs = getSharedPreferences("WalkingData", MODE_PRIVATE)
+        val prefs = getSharedPreferences("WalkingData_$userId", MODE_PRIVATE)
         prefs.edit().putString("data", dataList.joinToString("|")).apply()
     }
 
     private fun loadData() {
         // Load history
-        val prefs = getSharedPreferences("WalkingData", MODE_PRIVATE)
+        val prefs = getSharedPreferences("WalkingData_$userId", MODE_PRIVATE)
         val saved = prefs.getString("data", "")
         if (!saved.isNullOrEmpty()) {
             dataList.clear()
@@ -186,7 +192,7 @@ class WalkingActivity : AppCompatActivity(), SensorEventListener {
         }
 
         // Load step baseline and goal
-        val basePrefs = getSharedPreferences("stepsPrefs", MODE_PRIVATE)
+        val basePrefs = getSharedPreferences("stepsPrefs_$userId", MODE_PRIVATE)
         previousTotalSteps = basePrefs.getFloat("previousSteps", 0f)
         stepGoal = basePrefs.getInt("stepGoal", 10000)
     }

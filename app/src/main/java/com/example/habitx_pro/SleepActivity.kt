@@ -2,12 +2,14 @@ package com.example.habitx_pro
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,10 +24,15 @@ class SleepActivity : AppCompatActivity() {
     private lateinit var listView: ListView
     private lateinit var adapter: ArrayAdapter<String>
     private var dataList = mutableListOf<String>()
+    private lateinit var auth: FirebaseAuth
+
+    private val userId: String
+        get() = auth.currentUser?.uid ?: "default_user"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sleep)
+        auth = FirebaseAuth.getInstance()
 
         val dateBtn = findViewById<Button>(R.id.dateBtn)
         val sleepBtn = findViewById<Button>(R.id.sleepTimeBtn)
@@ -38,7 +45,7 @@ class SleepActivity : AppCompatActivity() {
         // Initialize display
         updateDateButtonText(dateBtn)
 
-        val prefs = getSharedPreferences("SleepData", MODE_PRIVATE)
+        val prefs = getSharedPreferences("SleepData_$userId", Context.MODE_PRIVATE)
 
         // Load data
         val saved = prefs.getStringSet("data", mutableSetOf())!!

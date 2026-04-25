@@ -9,49 +9,76 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var sharedPref: SharedPreferences
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+
+    private val userId: String
+        get() = auth.currentUser?.uid ?: "default_user"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         auth = FirebaseAuth.getInstance()
-        sharedPref = getSharedPreferences("HabitX", MODE_PRIVATE)
+        database = FirebaseDatabase.getInstance()
+        sharedPref = getSharedPreferences("HabitX_$userId", MODE_PRIVATE)
 
         val profileName = findViewById<TextInputEditText>(R.id.profileName)
-        val profileAge = findViewById<TextInputEditText>(R.id.profileAge)
         val userEmail = findViewById<TextView>(R.id.userEmail)
         val saveProfileBtn = findViewById<Button>(R.id.saveProfileBtn)
         val logoutBtn = findViewById<Button>(R.id.logoutBtn)
 
-        // Display current user email
         val currentUser = auth.currentUser
+        val currentUserId = currentUser?.uid
+
+        // Display current user email
         userEmail.text = currentUser?.email ?: "Not logged in"
 
-        // Load name from shared preferences
-        val savedName = sharedPref.getString("name", "")
-        profileName.setText(savedName)
-
-        // Load saved age if exists
-        val savedAge = sharedPref.getString("age", "")
-        profileAge.setText(savedAge)
+        // Fetch user name from Firebase Realtime Database
+        if (currentUserId != null) {
+            val userRef = database.getReference("users").child(currentUserId).child("name")
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val name = snapshot.getValue(String::class.java)
+                    if (name != null) {
+                        profileName.setText(name)
+                        // Also sync to local shared preferences for offline use
+                        sharedPref.edit().putString("name", name).apply()
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    // Fallback to local shared preferences if database fetch fails
+                    val savedName = sharedPref.getString("name", "")
+                    profileName.setText(savedName)
+                }
+            })
+        } else {
+            val savedName = sharedPref.getString("name", "")
+            profileName.setText(savedName)
+        }
 
         saveProfileBtn.setOnClickListener {
-            val enteredName = profileName.text.toString()
-            val enteredAge = profileAge.text.toString()
+            val enteredName = profileName.text.toString().trim()
             
-            if (enteredName.isNotEmpty() && enteredAge.isNotEmpty()) {
+            if (enteredName.isNotEmpty()) {
+                // Update in Firebase
+                if (currentUserId != null) {
+                    database.getReference("users").child(currentUserId).child("name").setValue(enteredName)
+                }
+                
+                // Update locally
                 sharedPref.edit()
                     .putString("name", enteredName)
-                    .putString("age", enteredAge)
                     .apply()
+                
                 Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show()
             }
         }
 

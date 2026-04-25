@@ -5,13 +5,19 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <!-- Background -->
+    <!-- Background - Restored to full vibrancy -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/bg_home"
         android:scaleType="centerCrop"
-        android:alpha="0.4" />
+        android:alpha="1.0" />
+
+    <!-- Very light white overlay to subtly highlight cards without washing out color -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1AFFFFFF" />
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

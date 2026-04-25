@@ -1,10 +1,12 @@
 package com.example.habitx_pro
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,10 +20,15 @@ class CookingActivity : AppCompatActivity() {
 
     private var cookingDataList = mutableListOf<String>()
     private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var auth: FirebaseAuth
+
+    private val userId: String
+        get() = auth.currentUser?.uid ?: "default_user"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cooking)
+        auth = FirebaseAuth.getInstance()
 
         dishNameInput = findViewById(R.id.dishNameInput)
         recipeInput = findViewById(R.id.recipeInput)
@@ -82,12 +89,12 @@ class CookingActivity : AppCompatActivity() {
     }
 
     private fun saveCookingData() {
-        val prefs = getSharedPreferences("CookingData", MODE_PRIVATE)
+        val prefs = getSharedPreferences("CookingData_$userId", Context.MODE_PRIVATE)
         prefs.edit().putString("recipes", cookingDataList.joinToString("|||")).apply()
     }
 
     private fun loadCookingData() {
-        val prefs = getSharedPreferences("CookingData", MODE_PRIVATE)
+        val prefs = getSharedPreferences("CookingData_$userId", Context.MODE_PRIVATE)
         val saved = prefs.getString("recipes", "")
         if (!saved.isNullOrEmpty()) {
             cookingDataList = saved.split("|||").toMutableList()

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/createTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create New Habit"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/habitNameLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="Habit Name"
+        android:textColorHint="#888888"
+        app:boxStrokeColor="@color/purple_500"
+        app:hintTextColor="@color/purple_500"
+        app:layout_constraintTop_toBottomOf="@id/createTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/habitNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/typeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Choose Tracker Type:"
+        android:textColor="#BBBBBB"
+        app:layout_constraintTop_toBottomOf="@id/habitNameLayout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/typeRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/typeLabel">
+
+        <RadioButton
+            android:id="@+id/radioTally"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tally Counter (e.g. Water, Laps)"
+            android:textColor="@android:color/white"
+            android:buttonTint="@color/purple_500"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Timer (e.g. Meditation, Study)"
+            android:textColor="@android:color/white"
+            android:buttonTint="@color/purple_500" />
+
+        <RadioButton
+            android:id="@+id/radioTimeRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time Range (e.g. Sleep, Work)"
+            android:textColor="@android:color/white"
+            android:buttonTint="@color/purple_500" />
+
+        <RadioButton
+            android:id="@+id/radioText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Text Log (e.g. Food, Journal)"
+            android:textColor="@android:color/white"
+            android:buttonTint="@color/purple_500" />
+
+        <RadioButton
+            android:id="@+id/radioPedometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pedometer (Step Counter)"
+            android:textColor="@android:color/white"
+            android:buttonTint="@color/purple_500" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/saveHabitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/purple_500"
+        android:text="Create Habit"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:cornerRadius="12dp"
+        app:layout_constraintTop_toBottomOf="@id/typeRadioGroup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

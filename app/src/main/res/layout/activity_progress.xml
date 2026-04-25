@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0A0A1A">
@@ -31,117 +32,120 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Walking Summary Card -->
-            <LinearLayout
+            <!-- Static Habits -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_white"
-                android:backgroundTint="#1A1A2E"
-                android:orientation="vertical"
-                android:padding="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#1A1A2E"
                 android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Walking"
-                    android:textColor="#B39DDB"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Walking" android:textColor="#B39DDB" android:textStyle="bold" android:textSize="18sp"/>
+                    <TextView android:id="@+id/walkingSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Steps today: 0" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/walkingSummary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Steps today: 0"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
-
-            <!-- Yoga Summary Card -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_white"
-                android:backgroundTint="#1A1A2E"
-                android:orientation="vertical"
-                android:padding="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#1A1A2E"
                 android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yoga"
-                    android:textColor="#81C784"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yoga" android:textColor="#81C784" android:textStyle="bold" android:textSize="18sp"/>
+                    <TextView android:id="@+id/yogaSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Last session: None" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/yogaSummary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Last session: None"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
-
-            <!-- Meditation Summary Card -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_white"
-                android:backgroundTint="#1A1A2E"
-                android:orientation="vertical"
-                android:padding="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#1A1A2E"
                 android:layout_marginBottom="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Meditation"
-                    android:textColor="#64B5F6"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sleep" android:textColor="#BBDEFB" android:textStyle="bold" android:textSize="18sp"/>
+                    <TextView android:id="@+id/sleepSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Last sleep: None" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/meditationSummary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Last session: None"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
-
-            <!-- Cooking Summary Card -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_white"
-                android:backgroundTint="#1A1A2E"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#1A1A2E"
+                android:layout_marginBottom="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Swimming" android:textColor="#4FC3F7" android:textStyle="bold" android:textSize="18sp"/>
+                    <TextView android:id="@+id/swimmingSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Last session: None" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#1A1A2E"
+                android:layout_marginBottom="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Meditation" android:textColor="#64B5F6" android:textStyle="bold" android:textSize="18sp"/>
+                    <TextView android:id="@+id/meditationSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Last session: None" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#1A1A2E"
+                android:layout_marginBottom="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cooking" android:textColor="#FF8A65" android:textStyle="bold" android:textSize="18sp"/>
+                    <TextView android:id="@+id/cookingSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Latest Dish: None" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Dynamic Habits Container -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Custom Habits"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <LinearLayout
+                android:id="@+id/dynamicHabitsProgressContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_marginBottom="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cooking"
-                    android:textColor="#FF8A65"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:id="@+id/cookingSummary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Latest Dish: None"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:layout_marginTop="4dp"/>
-            </LinearLayout>
+                android:layout_marginBottom="40dp" />
 
         </LinearLayout>
     </ScrollView>

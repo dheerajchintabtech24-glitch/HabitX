@@ -7,30 +7,31 @@
     <!-- CARD -->
     <LinearLayout
         android:orientation="vertical"
-        android:padding="24dp"
-        android:layout_margin="28dp"
+        android:padding="32dp"
+        android:layout_margin="24dp"
         android:background="@drawable/bg_card_glass"
-        android:elevation="10dp"
+        android:elevation="12dp"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <!-- Title -->
         <TextView
-            android:text="HabitX"
-            android:textSize="24sp"
+            android:text="HabitX Pro"
+            android:textSize="32sp"
             android:textStyle="bold"
-            android:textColor="#111111"
+            android:textColor="#6200EE"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:textColorHint="#B0FFFFFF"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:text="Sign in to continue"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="20dp"
+            android:text="Welcome back!"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -38,38 +39,46 @@
         <EditText
             android:id="@+id/email"
             android:hint="Email Address"
+            android:textColor="#000000"
+            android:textColorHint="#777777"
             android:background="@drawable/bg_input"
-            android:padding="14dp"
-            android:layout_marginBottom="12dp"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="wrap_content"/>
 
         <!-- Password -->
         <EditText
             android:id="@+id/password"
             android:hint="Password"
+            android:textColor="#000000"
+            android:textColorHint="#777777"
             android:inputType="textPassword"
             android:background="@drawable/bg_input"
-            android:padding="14dp"
-            android:layout_marginBottom="20dp"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="wrap_content"/>
 
         <!-- Login Button -->
         <Button
             android:id="@+id/loginBtn"
             android:text="Login"
+            android:textSize="18sp"
+            android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:background="@drawable/bg_button"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="56dp"/>
 
         <!-- Signup -->
         <TextView
             android:id="@+id/signupRedirect"
-            android:text="Create new account"
-            android:textColor="#4A6CF7"
-            android:layout_marginTop="16dp"
+            android:text="Don't have an account? Sign Up"
+            android:textColor="#6200EE"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

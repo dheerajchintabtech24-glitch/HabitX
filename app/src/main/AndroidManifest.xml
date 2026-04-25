@@ -23,6 +23,8 @@
         <activity android:name=".HomeActivity" android:exported="false"/>
         <activity android:name=".ProgressActivity" android:exported="false"/>
         <activity android:name=".ProfileActivity" android:exported="false"/>
+        <activity android:name=".CreateHabitActivity" android:exported="false"/>
+        <activity android:name=".DynamicHabitActivity" android:exported="false"/>
 
         <activity android:name=".WalkingActivity" android:exported="false"/>
         <activity android:name=".MeditationActivity" android:exported="false"/>
