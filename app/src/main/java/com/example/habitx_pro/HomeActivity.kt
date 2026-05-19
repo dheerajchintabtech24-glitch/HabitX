@@ -87,7 +87,9 @@ class HomeActivity : AppCompatActivity() {
             Habit("3", "Cooking", "Track meals", "cooking_card", "CookingActivity"),
             Habit("4", "Sleep", "Track sleep", "sleep_card", "SleepActivity"),
             Habit("5", "Yoga", "Track time", "yoga_card", "YogaActivity"),
-            Habit("6", "Swimming", "Track laps", "swim_card", "SwimmingActivity")
+            Habit("6", "Swimming", "Track laps", "swim_card", "SwimmingActivity"),
+            Habit("7", "Gym", "Track reps", "gym_card", "GymActivity"),
+            Habit("8", "Singing", "Record songs", "singing_card", "SingingActivity")
         )
 
         if (savedHabits != null && savedHabits.isNotEmpty()) {

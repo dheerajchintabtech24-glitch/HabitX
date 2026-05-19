@@ -62,9 +62,12 @@ class HabitAdapter(
             holder.habitSubtitle.text = habit.subtitle
 
             val context = holder.itemView.context
-            val isCustom = habit.id.startsWith("custom_") || (habit.id.length >= 5 && habit.id != "walking" && habit.id != "yoga" && habit.id != "sleep" && habit.id != "meditation" && habit.id != "water" && habit.id != "reading")
+            
+            // A habit is "Custom" if it's not one of our predefined main habits
+            val mainHabitIds = listOf("1", "2", "3", "4", "5", "6", "7", "8", "walking", "meditation", "cooking", "sleep", "yoga", "swimming", "gym", "singing")
+            val isCustom = !mainHabitIds.contains(habit.id.lowercase()) && !habit.id.startsWith("HEADER")
 
-            if (isCustom && habit.id != "HEADER_ADDED") {
+            if (isCustom) {
                 // Style for Custom Habits: Darker silky purple background, white text, top-left alignment
                 holder.cardRoot.setCardBackgroundColor(Color.parseColor("#311B92")) // Deep Midnight Purple
                 holder.habitImage.setImageDrawable(null)
@@ -91,9 +94,8 @@ class HabitAdapter(
                     holder.habitSubtitle.gravity = Gravity.START
                 }
             } else {
-                // Style for Default Habits: Original Image background
+                // Style for Main Habits: Original Image background
                 holder.cardRoot.setCardBackgroundColor(Color.WHITE)
-                // Remove overlay to retain original image color
                 holder.overlay.visibility = View.GONE 
                 holder.habitImage.visibility = View.VISIBLE
                 holder.habitImage.alpha = 1.0f
@@ -108,7 +110,7 @@ class HabitAdapter(
                 holder.habitSubtitle.setShadowLayer(4f, 0f, 0f, Color.BLACK)
                 holder.habitSubtitle.visibility = View.VISIBLE
 
-                // Position text at Bottom Left for default cards
+                // Position text at Bottom Left for main cards
                 val params = holder.textContainer.layoutParams as RelativeLayout.LayoutParams
                 params.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
                 params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)

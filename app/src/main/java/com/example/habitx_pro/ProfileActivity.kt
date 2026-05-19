@@ -4,14 +4,18 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -35,6 +39,7 @@ class ProfileActivity : AppCompatActivity() {
         val profileName = findViewById<TextInputEditText>(R.id.profileName)
         val userEmail = findViewById<TextView>(R.id.userEmail)
         val saveProfileBtn = findViewById<Button>(R.id.saveProfileBtn)
+        val reportProblemBtn = findViewById<Button>(R.id.reportProblemBtn)
         val logoutBtn = findViewById<Button>(R.id.logoutBtn)
         val profileImage = findViewById<ShapeableImageView>(R.id.profileImage)
 
@@ -133,6 +138,10 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
+        reportProblemBtn.setOnClickListener {
+            showReportDialog()
+        }
+
         logoutBtn.setOnClickListener {
             auth.signOut()
             Toast.makeText(this, "Logged Out", Toast.LENGTH_SHORT).show()
@@ -140,6 +149,47 @@ class ProfileActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
+        }
+    }
+
+    private fun showReportDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_report_problem, null)
+        val problemInput = dialogView.findViewById<TextInputEditText>(R.id.problemInput)
+
+        MaterialAlertDialogBuilder(this, R.style.CustomAlertDialog)
+            .setTitle("Report a Problem")
+            .setMessage("Please describe the issue you are facing.")
+            .setView(dialogView)
+            .setPositiveButton("Submit") { _, _ ->
+                val problem = problemInput.text.toString().trim()
+                if (problem.isNotEmpty()) {
+                    submitProblemToFirebase(problem)
+                } else {
+                    Toast.makeText(this, "Please describe the problem", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun submitProblemToFirebase(problem: String) {
+        val currentUserId = auth.currentUser?.uid ?: return
+        val userEmail = auth.currentUser?.email ?: "Unknown Email"
+        val reportRef = database.getReference("reports").push()
+        
+        val reportData = mapOf(
+            "userId" to currentUserId,
+            "email" to userEmail,
+            "problem" to problem,
+            "timestamp" to ServerValue.TIMESTAMP
+        )
+
+        reportRef.setValue(reportData).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this, "Thank you! Your report has been submitted.", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Submission failed. Please try again later.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

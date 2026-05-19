@@ -2,13 +2,29 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.HabitX_Pro" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#7B61FF</item>
+        <item name="android:statusBarColor">#121212</item>
+        <item name="android:windowBackground">#121212</item>
     </style>
 
     <style name="Theme.HabitX_Pro" parent="Base.Theme.HabitX_Pro" />
 
     <style name="CircleImage" parent="">
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomAlertDialog" parent="Theme.Material3.Dark.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="backgroundTint">#1E1E1E</item>
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorPrimary">#7B61FF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#BBBBBB</item>
+        <item name="shapeAppearanceLargeComponent">@style/RoundedCornersDialog</item>
+    </style>
+
+    <style name="RoundedCornersDialog" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">24dp</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">

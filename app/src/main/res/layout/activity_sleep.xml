@@ -1,118 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#000000"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <!-- IMAGE -->
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="250dp"
+            android:contentDescription="sleep"
             android:scaleType="centerCrop"
-            android:src="@drawable/sleep"
-            android:contentDescription="sleep"/>
+            android:src="@drawable/sleep" />
 
-        <!-- CONTENT -->
         <LinearLayout
-            android:orientation="vertical"
-            android:padding="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
 
             <TextView
-                android:text="Sleep Tracker"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="12dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="Sleep Tracker"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/dateBtn"
-                android:text="Select Date"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="BED TIME (START)"
+                android:textColor="#7B61FF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/startDateBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#444444"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#333333"
+                android:text="Select Date"
                 android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp"/>
+                app:cornerRadius="8dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/sleepTimeBtn"
-                    android:text="Bed Time"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="4dp"
-                    android:backgroundTint="#333333"
-                    android:textColor="#FFFFFF"/>
+                <NumberPicker
+                    android:id="@+id/startHourPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-                <Button
-                    android:id="@+id/wakeTimeBtn"
-                    android:text="Wake Time"
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="4dp"
-                    android:backgroundTint="#333333"
-                    android:textColor="#FFFFFF"/>
+                    android:layout_marginHorizontal="4dp"
+                    android:text=":"
+                    android:textColor="#7B61FF"
+                    android:textSize="24sp" />
+
+                <NumberPicker
+                    android:id="@+id/startMinPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <NumberPicker
+                    android:id="@+id/startAmPmPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/saveSleepBtn"
-                android:text="Save Sleep Record"
-                android:layout_marginTop="12dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="WAKE TIME (END)"
+                android:textColor="#7B61FF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/endDateBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#7B61FF"
-                android:textColor="#FFFFFF"/>
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#333333"
+                android:text="Select Date"
+                android:textColor="#FFFFFF"
+                app:cornerRadius="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <NumberPicker
+                    android:id="@+id/endHourPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:text=":"
+                    android:textColor="#7B61FF"
+                    android:textSize="24sp" />
+
+                <NumberPicker
+                    android:id="@+id/endMinPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <NumberPicker
+                    android:id="@+id/endAmPmPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/resultText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:text=""
                 android:textColor="#00FF00"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/saveSleepBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="55dp"
+                android:backgroundTint="#7B61FF"
+                android:text="Save Sleep Record"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:cornerRadius="8dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#333333"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:background="#333333" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:text="Sleep History"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/sleepList"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:divider="#222222"
-                android:dividerHeight="1dp"/>
+                android:dividerHeight="1dp"
+                android:nestedScrollingEnabled="true" />
 
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>

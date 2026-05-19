@@ -39,9 +39,10 @@ class CreateHabitActivity : AppCompatActivity() {
                 R.id.radioTally -> "Tally"
                 R.id.radioTimer -> "Timer"
                 R.id.radioGoalTimer -> "GoalTimer"
-                R.id.radioTimeRange -> "TimeRange"
+                R.id.radioAudio -> "Audio"
                 R.id.radioText -> "Text"
                 R.id.radioPedometer -> "Pedometer"
+                R.id.radioImages -> "Images"
                 else -> "Tally"
             }
 
