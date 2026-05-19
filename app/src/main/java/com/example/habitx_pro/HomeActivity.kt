@@ -34,7 +34,6 @@ class HomeActivity : AppCompatActivity() {
             recyclerView = findViewById(R.id.habitsRecyclerView)
             val layoutManager = GridLayoutManager(this, 2)
             
-            // Set SpanSizeLookup for the header
             layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     return if (adapter.getItemViewType(position) == HabitAdapter.VIEW_TYPE_HEADER) 2 else 1
@@ -45,12 +44,10 @@ class HomeActivity : AppCompatActivity() {
 
             loadHabits()
 
-            // Add Habit Button
             findViewById<Button>(R.id.addHabitBtn).setOnClickListener {
                 startActivity(Intent(this, CreateHabitActivity::class.java))
             }
 
-            // Bottom Navigation Logic
             val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
             bottomNav.selectedItemId = R.id.nav_home
 
@@ -59,6 +56,10 @@ class HomeActivity : AppCompatActivity() {
                     R.id.nav_home -> true
                     R.id.nav_progress -> {
                         startActivity(Intent(this, ProgressActivity::class.java))
+                        true
+                    }
+                    R.id.nav_ai_coach -> {
+                        startActivity(Intent(this, HabitGuideActivity::class.java))
                         true
                     }
                     R.id.nav_profile -> {
@@ -106,7 +107,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showDeleteConfirmation(habit: Habit) {
-        // Only allow deleting custom habits
         if (habit.id.length < 5 || habit.id == "HEADER_ADDED") {
             Toast.makeText(this, "System habits cannot be deleted", Toast.LENGTH_SHORT).show()
             return
@@ -133,7 +133,6 @@ class HomeActivity : AppCompatActivity() {
         habits.removeAll { it.id == habit.id }
         prefs.edit().putString("custom_habits", gson.toJson(habits)).apply()
         
-        // Also clean up habit type and data
         prefs.edit().remove("habit_type_${habit.id}").apply()
         getSharedPreferences("DynamicHabitData_$userId", Context.MODE_PRIVATE).edit().remove("data_${habit.id}").apply()
 
